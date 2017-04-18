@@ -7,24 +7,16 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: {} };
+    this.state = { user: {},display:true};
+    
   }
 
   getUserInformation() {
-    /*
-      TODO: fetch a user from the GitHub API
-
-      TIPS:
-       1) The Fetch API provides an interface for
-         fetching resources (including across the network).
-       2) Maybe you want to update the state here.
-    */
 
     fetch('https://api.github.com/users/ramonabejan')
       .then(response => response.json())
       .then(responseData => {
-        this.setState({ user: responseData});
-        console.log(responseData);
+        this.setState({ user: responseData, display:false});
       })
       .catch( error => {
         console.log('Error fetching and parsing data', error);
@@ -44,10 +36,19 @@ class App extends Component {
         </p>
         <div className="App-intro">
           <hr />
+
+          { this.state.display ?
+
           <p>Click on the button to fetch the user information</p>
-          <button onClick={this.getUserInformation.bind(this)}>
+
+          : null }
+
+          { this.state.display ?
+
+            <button  onClick={this.getUserInformation.bind(this)}>
             Click me
-          </button>
+          </button> : null }
+          
         </div>
         <UserInformation data={this.state.user} />
       </div>

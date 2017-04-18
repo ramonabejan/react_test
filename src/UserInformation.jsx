@@ -3,7 +3,6 @@ import React from 'react';
 const UserInformation = props => {	
 	let results = props.data;
 	var index =0;
-
 	var tmp = [];
 
 	for(var userInfo in results) {
@@ -11,14 +10,12 @@ const UserInformation = props => {
 	}
 
 	var infos = tmp.map(result => {
-		return (<li key={index++}> {result} </li>);
+		return (<div key={index++}> {result} </div>);
 	})
 
 	return (
-		 <div>
-		 	<ul>
+		 <div>		 
 		 	{infos}
-		 	</ul>
  		 </div>
 	);
 }
