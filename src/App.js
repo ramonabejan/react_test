@@ -7,7 +7,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: {} }
+    this.state = { user: {} };
   }
 
   getUserInformation() {
@@ -19,6 +19,17 @@ class App extends Component {
          fetching resources (including across the network).
        2) Maybe you want to update the state here.
     */
+
+    fetch('https://api.github.com/users/ramonabejan')
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({ user: responseData});
+        console.log(responseData);
+      })
+      .catch( error => {
+        console.log('Error fetching and parsing data', error);
+      })
+
   }
 
   render() {
@@ -38,7 +49,7 @@ class App extends Component {
             Click me
           </button>
         </div>
-        <UserInformation />
+        <UserInformation data={this.state.user} />
       </div>
     );
   }
