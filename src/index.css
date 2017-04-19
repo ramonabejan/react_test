@@ -18,3 +18,20 @@ body {
     text-align: left;
     padding-left: 200px;
 }
+
+.repo {
+	padding-top: 20px;
+    display: block;
+    text-align: left;
+    padding-left: 200px;
+}
+
+.repoTitle {
+	font-weight: bold;
+
+}
+
+.repoDescription {
+	 position: relative;
+	 padding-left: 20px;
+}

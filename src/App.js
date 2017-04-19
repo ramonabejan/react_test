@@ -1,27 +1,48 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
 import UserInformation from './UserInformation';
+
+
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: {},display:true};
+    //state = user info 
+    //displayUserButton: Click me button to display user info
+    //displayRepoButton Show repositories button to display repositories
+    this.state = { user: {},displayUserButton:true,displayRepoButton:false};
+    this.apiUrl= 'https://api.github.com/users/';
+    this.username= 'ramonabejan';
     
   }
 
   getUserInformation() {
-
-    fetch('https://api.github.com/users/ramonabejan')
+    //https://api.github.com/users/ramonabejan
+    fetch(`${this.apiUrl}${this.username}`)
+   
       .then(response => response.json())
       .then(responseData => {
-        this.setState({ user: responseData, display:false});
+        this.setState({ user: responseData, displayUserButton:false, displayRepoButton: true});
       })
       .catch( error => {
         console.log('Error fetching and parsing data', error);
       })
 
+  }
+
+  // fetch repositories info 
+  getRepoInformation() {
+    fetch(`${this.apiUrl}${this.username}/repos`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({ repo: responseData, displayRepoButton: false});
+      })
+      .catch( error => {
+        console.log('Error fetching and parsing data', error);
+      })
   }
 
   render() {
@@ -37,19 +58,27 @@ class App extends Component {
         <div className="App-intro">
           <hr />
 
-          { this.state.display ?
+          { this.state.displayUserButton ?
 
           <p>Click on the button to fetch the user information</p>
 
           : null }
 
-          { this.state.display ?
+          { this.state.displayUserButton ?
 
             <button  onClick={this.getUserInformation.bind(this)}> Click me </button> 
           : null }
           
         </div>
-        <UserInformation data={this.state.user} />
+        
+        <UserInformation 
+          data={this.state.user} 
+          getRepoInfo={this.getRepoInformation.bind(this)} 
+          repoData={this.state.repo} 
+          displayRepo={this.state.displayRepoButton} />
+          
+       
+
       </div>
     );
   }

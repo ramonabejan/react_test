@@ -13,3 +13,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 You will find some information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+====================================================
+
+1. getUserInformation() - UserInformation.jsx
+
+2. getRepoInformation() --RepoInformation.jsx
+
+	When we display  the user information we have a "Show repositories button". The user information is hidden when we consult the repositories details 
+
+
+
