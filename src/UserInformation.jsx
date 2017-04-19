@@ -2,20 +2,27 @@ import React from 'react';
 
 const UserInformation = props => {	
 	let results = props.data;
-	var index =0;
-	var tmp = [];
-
+	var index= 0;
+	var allInfo= [];
+	var avatar;
 	for(var userInfo in results) {
-		tmp.push(`${userInfo}: ${results[userInfo]}`);
+		if(results[userInfo] !== '') {
+			if (userInfo === 'avatar_url') {
+				avatar= <div className="avatarUserInfo" key={index++} ><img src={results[userInfo]} alt="avatar"/> </div> ;
+			}
+			else {
+			    allInfo.push (<div key={index++} className="textUserInfo"> {userInfo}: {results[userInfo]}  </div>)
+			}
+		
+		}		
+	
 	}
 
-	var infos = tmp.map(result => {
-		return (<div key={index++}> {result} </div>);
-	})
+	allInfo.unshift(avatar);
 
 	return (
 		 <div>		 
-		 	{infos}
+		 	{allInfo}
  		 </div>
 	);
 }

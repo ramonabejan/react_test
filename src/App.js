@@ -45,9 +45,8 @@ class App extends Component {
 
           { this.state.display ?
 
-            <button  onClick={this.getUserInformation.bind(this)}>
-            Click me
-          </button> : null }
+            <button  onClick={this.getUserInformation.bind(this)}> Click me </button> 
+          : null }
           
         </div>
         <UserInformation data={this.state.user} />
