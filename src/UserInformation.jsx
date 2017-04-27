@@ -26,6 +26,7 @@ const UserInformation = props => {
 	//display photo first
 	arrayUser.unshift(avatar);
 
+	//add show repositories button to array
 	arrayUser.unshift(<button key={index++} onClick={props.getRepoInfo} > Show repositories </button>)
 
 	return (
