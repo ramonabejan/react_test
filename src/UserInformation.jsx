@@ -3,30 +3,30 @@ import RepoInformation from './RepoInformation';
 
 
 const UserInformation = props => {	
-	let results = props.data;
+	let userData = props.data;
 	//key of the user info array
-	var index= 0;
+	let index = 0;
 	//user info
-	var userDetails=[];
-	var avatar;
+	let arrayUser = [];
+	let avatar;
 
-	for(var userInfo in results) {
-		//hide fields without values
-		if(results[userInfo] !== '') {
-			if (userInfo === 'avatar_url') {
-				avatar=<div className="avatarUserInfo" key={index++} ><img src={results[userInfo]} alt="avatar"/> </div> ;
-			}
-			else {
-			    userDetails.push (<div key={index++} className="textUserInfo"> {userInfo}: {results[userInfo]}  </div>)
-			}
-		
-		}		
+	//for(let userInfo in userData) {
+	Object.entries(userData).map( ([prop, value]) => {	
+		if (prop === 'avatar_url') {
+			avatar= <div className="avatarUserInfo" key={index++} ><img src={value} alt="avatar"/> </div> ;
+		}
+		else {
+		    arrayUser.push (<div key={index++} className="textUserInfo"> {prop}: {value}  </div>)
+		}
 	
-	}
-	//display photo first
-	userDetails.unshift(avatar);
+				
+		return true;
+	});
 
-	userDetails.unshift(<button key={index++} onClick={props.getRepoInfo} > Show repositories </button>)
+	//display photo first
+	arrayUser.unshift(avatar);
+
+	arrayUser.unshift(<button key={index++} onClick={props.getRepoInfo} > Show repositories </button>)
 
 	return (
 
@@ -34,7 +34,7 @@ const UserInformation = props => {
 		 <RepoInformation data={props.repoData} /> 
 
 		 { props.displayRepo ? 
-		 	userDetails
+		 	arrayUser
 		 :null }
  		 </div>
 	);

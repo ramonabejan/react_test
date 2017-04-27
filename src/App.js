@@ -19,7 +19,7 @@ class App extends Component {
     
   }
 
-  getUserInformation() {
+  getUserInformation = () => {
     //https://api.github.com/users/ramonabejan
     fetch(`${this.apiUrl}${this.username}`)
    
@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   // fetch repositories info 
-  getRepoInformation() {
+  getRepoInformation = () =>  {
     fetch(`${this.apiUrl}${this.username}/repos`)
       .then(response => response.json())
       .then(responseData => {
@@ -66,22 +66,21 @@ class App extends Component {
 
           { this.state.displayUserButton ?
 
-            <button  onClick={this.getUserInformation.bind(this)}> Click me </button> 
+            <button  onClick={this.getUserInformation}> Click me </button> 
           : null }
           
         </div>
         
         <UserInformation 
           data={this.state.user} 
-          getRepoInfo={this.getRepoInformation.bind(this)} 
+          getRepoInfo={this.getRepoInformation} 
           repoData={this.state.repo} 
-          displayRepo={this.state.displayRepoButton} />
-          
-       
+          displayRepo={this.state.displayRepoButton} />      
 
       </div>
     );
   }
 }
+
 
 export default App;

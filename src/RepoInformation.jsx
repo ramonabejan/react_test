@@ -1,22 +1,23 @@
 import React from 'react';
 
 const RepoInformation = props => {
-  	let results = props.data;
+  	let repoData = props.data;
 	//key of the user repo info array
-	var index= 0;
+	let index= 0;
 	//user info
-	var allInfo=[];
+	let arrayRepo=[];
+	if(repoData !== undefined ) {
+		repoData.map(result => {
+			arrayRepo.push (<div key={index++} className="repoTitle"> {result.name}  </div>);
+			arrayRepo.push (<p key={index++} className="repoDescription"> {result.description}  </p>);
+			return true;	
+		});
+	}
 	
-	for(var repoInfo in results) {		
-		allInfo.push (<div key={index++} className="repoTitle"> {results[repoInfo].name}  </div>);
-		allInfo.push (<p key={index++} className="repoDescription"> {results[repoInfo].description}  </p>);
-	}		
-		
-
 	return (
-		 <div className="repo">		 
-		 	{allInfo}
- 		 </div>
+		<div className="repo">		 
+			{arrayRepo}	 
+ 		</div>
 	);
 }
 
