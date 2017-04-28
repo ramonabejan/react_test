@@ -10,16 +10,14 @@ const UserInformation = props => {
 	let arrayUser = [];
 	let avatar;
 
-	//for(let userInfo in userData) {
-	Object.entries(userData).map( ([prop, value]) => {	
-		if (prop === 'avatar_url') {
-			avatar= <div className="avatarUserInfo" key={index++} ><img src={value} alt="avatar"/> </div> ;
+	Object.keys(userData).map( (propKey) => {	
+		if (propKey === 'avatar_url') {
+			avatar= <div className="avatarUserInfo" key={index++} ><img src={userData[propKey]} alt="avatar"/> </div> ;
 		}
 		else {
-		    arrayUser.push (<div key={index++} className="textUserInfo"> {prop}: {value}  </div>)
+		    arrayUser.push (<div key={index++} className="textUserInfo"> {propKey}: {userData[propKey]}  </div>)
 		}
 	
-				
 		return true;
 	});
 
